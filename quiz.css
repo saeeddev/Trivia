@@ -1,0 +1,530 @@
+
+
+body{
+    background-image: url(images/general-back.jpg);
+    background-repeat: no-repeat;
+    background-size: auto;
+    /* background-size: cover; */
+    /* font-family: 'Francois One', sans-serif; */
+
+    
+}
+
+#mainScreen{
+    width: 100%;
+    margin-top: 1vh;
+    display: none;
+    height: 65vh;
+}
+
+.currentTurn{
+    text-align: center;
+}
+
+#question{
+    font-weight: 500;
+    font-size: 16px;
+}
+
+
+.header {
+    /* display: inline-block; */
+    text-align: center;
+    padding: 5px;
+    margin-top: 2%;
+    /* background-color: rgba(0,0,0,.4); */
+}
+
+.header > ul {
+    list-style-type: none;
+    text-align: center;
+    padding: 0px;
+}
+  
+.box {
+    display: inline-block;
+    /* border: 1px solid black; */
+    padding: 2%;
+    color: black;
+    text-transform: uppercase;
+    font-size: 50px;
+    /* font-family: "Gameshow"; */
+    box-shadow: 0 10px 20px black;
+    font-family: 'Francois One', sans-serif;
+    text-shadow: 0 10px 20px rgba(0,0,0,.8);
+    border-radius: 2px;
+    /* min-width: 87px; */
+}
+
+.red {
+    background-color: #FF5B5B;
+}
+
+.yellow {
+    background-color:#FFFF5B;
+    transform: translateY(-3px);
+}
+
+.blue { 
+    background-color: #5BC5FF;
+}
+
+.toggle{
+    color: white;
+}
+
+#startBody>div{
+    width: 100%;
+}
+
+#startTitle {
+    font-weight: bold;
+}
+
+#nextQuestion .modal-content, #start .modal-content, #nextQuestion .modal-content, #setPlayers .modal-content{
+    margin-top: 20vh;
+}
+
+.toggle{
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+.toggle input{
+    display: none;
+}
+
+.slider{
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+.slider:before{
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+input:checked + .slider{
+    background-color: #2196F3;
+}
+
+input:focus + .slider{
+    box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before{
+    transform: translateX(26px);
+}
+
+.slider.round{
+    border-radius: 34px;
+}
+
+.slider.round:before{
+    border-radius: 50%;
+}
+
+#hintBody .container{
+    width: 100%;
+}
+
+
+.startContent{
+    text-align: center;
+}
+
+.sound{
+    color: white;
+    position: relative;
+    bottom: 16px;
+}
+
+#answer1, #answer2, #answer3, #answer4{
+    padding: 1em;
+}
+
+.hintStyle{
+    width: 75%;
+    margin: 3% auto;
+}
+
+.nextQuestionContainer{
+    width: 100%;
+}
+
+.nextQuestionButtons {
+    margin-top: 5px;
+}
+
+#diff, #gameLength{
+    text-align: center;
+}
+
+#option1, #option2{
+    box-sizing: border-box;
+}
+
+#option1:hover, #option2:hover{
+    border: 1px solid yellow;
+}
+
+.playerOneStatusBox, .playerTwoStatusBox{
+    height: 38px;
+}
+.modal-title{
+    text-align: center;
+}
+
+#winner .container{
+    width: 100%;
+}
+
+#winner .row>.col-md-12{
+    text-align: center;
+}
+
+#setupBody .col-xs-12{
+    text-align: center;
+}
+
+aside {
+    border: 1px solid black;
+    padding: 5px;
+    padding-top: 10px;
+    border-radius: 4px;
+    background-color: rgba(0,0,0,0.5);
+    height: 100%;
+}
+
+.label-red {
+    background-color: #FF5B5B;
+}
+
+.label-green {
+    background-color: #3ac981;
+    letter-spacing: .1em;
+    color: black;
+}
+
+.label-black {
+    background-color: #000;
+}
+
+.playerColumn {
+    opacity: 0.5;
+    font-size: 100%;
+    text-align: center;
+    word-wrap: normal;
+}
+
+.currentTurn{
+    font-size: 16px;
+    font-weight: bold;
+}
+
+@keyframes fade-in-out {
+    0% {
+        border: 3px solid rgba(255,255,0,.4);
+    }
+    25% {
+        border: 3px solid rgba(255,255,0,0.7);
+    }
+
+    50% {
+        border: 3px solid rgba(255,255,0,1);
+
+    }
+    75% {
+        border: 3px solid rgba(255,255,0,0.7);
+    }
+    100% {
+        border: 3px solid rgba(255,255,0,4);
+
+    }
+}
+
+.hintBox{
+    height: 30px;
+    font-size: 14px;
+    padding-top: 1.2%;
+    margin-bottom: 5%;
+    letter-spacing: .1em;
+    font-weight: 400;
+}
+
+#help{
+    margin-top: 8%;
+}
+#help > p {
+    color: black;
+    font-weight: bold;
+}
+
+#wiki:hover,#youtube:hover,#twitter:hover{
+    background-color: #2c6fae;
+    opacity: 0.9;
+    border-radius: 4px;
+    border: 1px solid yellow;
+    color: white;
+}
+
+#wiki,#youtube,#twitter{
+    border-radius: 4px;
+    margin: 3px;
+}
+
+.activePlayer{
+    opacity: 1;
+    /* border: 3px solid yellow; */
+    animation: fade-in-out 4s ease-in-out infinite;
+}
+
+
+.highlightText:hover{
+    color: black !important;
+    text-shadow: none !important;
+}
+
+.answerText{
+    font-size: 16px;
+    text-align: center;
+}
+
+.modal-body p {
+    word-wrap: break-word;
+}
+
+#nextTitle,.answerText{
+    font-size: 18px;
+}
+
+.btn {
+    white-space: normal;
+}
+
+.btn-danger{
+    text-align: center;
+}
+
+.playerLabel{
+    margin:5px;
+    font-size:20px;
+}
+
+.nameInput{
+    max-width: 100%;
+}
+
+#turn, #turn-mobile{
+    padding-bottom: 1px;
+}
+
+#winMessage{
+    font-size: 20px;
+    text-align: center;
+    color: green;
+}
+
+.statsButtons{
+    padding: 0px;
+    text-align: center;
+}
+
+.soundContainer{
+    text-align: center;
+}
+
+#answer1,#answer2,#answer3,#answer4 {
+    padding: 2px;
+}
+
+.hoverBold:hover {
+    background-color: #2c6fae;
+    opacity: 0.9;
+    border-radius: 4px;
+    border: 1px solid yellow;
+    color: white;
+}
+
+
+.answerIcon{
+    text-align: center;
+}
+
+@media screen and (min-width: 992px){
+    #mainScreen{
+        margin-top: 10vh;
+    }
+
+    .playerOneStatusBox, .playerTwoStatusBox{
+        height: 125px;
+    }
+
+    #nextQuestion .modal-content, #start .modal-content, #nextQuestion .modal-content, #setPlayers .modal-content{
+        margin-top: 35vh;
+    }
+}
+
+@media screen and (min-width: 760px) and (max-width: 991px){
+    .playerOneStatusBox > div:nth-child(1) {
+        padding: 0px;
+    }
+
+    .playerTwoStatusBox > div:nth-child(1) {
+        padding: 0px;
+    }
+
+    .playerOneStatusBox > p, .playerTwoStatusBox > p {
+        padding: 0px;
+    }
+
+    .sound {
+        bottom: 16px;
+    }
+
+    .toggle{
+        right: 8px;
+        top: 6px;
+    }
+    .controls {
+        margin-top: 10px;
+    }
+
+    .playerOnePoints, .playerTwoPoints {
+        margin-left: 2px;
+    }
+
+    .playerOneStatusBox>p, .playerTwoStatusBox>p{
+        display: inline-block;
+    }
+
+    .playerOneStatusBox, .playerTwoStatusBox{
+        padding-top: 5px;
+    }
+
+    .slider {
+        top: -8px;
+        left: 64px;
+        right: -60px;
+        bottom: 9px;
+    }
+    .reset {
+        margin-left: 5px;
+    }
+
+    #nextQuestion .modal-content, #start .modal-content, #nextQuestion .modal-content, #setPlayers .modal-content{
+        margin-top: 35vh;
+    }
+}
+
+@media screen and (min-width: 460px) and (max-width: 768px) {
+    .playerColumn{
+        height: 50px;
+    }
+
+    .playerOneStatusBox, .playerTwoStatusBox{
+        padding-top: 10px;
+    }
+
+    .toggle{
+        top: 14px;
+        color: white;
+    }
+
+    .slider {
+        top: -8px;
+        left: 64px;
+        right: -60px;
+        bottom: 9px;
+    }
+
+    .currentTurn{
+        text-align: center;
+    }
+
+    #info, .reset, #info-min{
+        margin: 5px;
+    }
+
+    .controls{
+        margin-top: 35px;
+    }
+
+    #answers{
+        margin-left: 1px;
+    }
+
+    .playerOneStatusBox>p, .playerTwoStatusBox>p{
+        display: inline-block;
+    }
+
+    #nextQuestion .modal-content, #start .modal-content, #nextQuestion .modal-content, #setPlayers .modal-content{
+        margin-top: 35vh;
+    }
+}
+
+@media screen and (max-width: 460px){
+    .hint-content{
+        width: 95vw;
+        overflow: hidden;
+    }
+
+    .tempTwitter{
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .playerOneStatusBox, .playerTwoStatusBox{
+        height: 100%;
+        padding-bottom: 10px;
+    }
+
+    .playerLabel{
+        position: relative;
+        top: 2px;
+    }
+    .slider {
+        left: 71px;
+        right: -68px;
+    }
+    .toggle {
+        margin-top: 10px;
+        padding-top: 2%;
+    }
+    #answers {
+        margin-left: 1px;
+    }
+    .controls {
+        margin-left: 2px;
+        margin-top: 5px;
+    }
+    .hintStyle {
+        width: 95vw;
+        margin: 0 auto;
+    }
+    #hint {
+        padding-right: 0px !important;
+        padding-top: 2%;
+    }
+}
+
+
+
+
+

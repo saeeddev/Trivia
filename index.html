@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- html entities library -->
+    <script src="he.js"></script>
+
+    <!-- jQuery CDN -->
+    <script
+            src="https://code.jquery.com/jquery-3.2.1.min.js"
+            integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+            crossorigin="anonymous"></script>
+    <script src="model.js"></script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Quizzical</title>
+
+    <!-- Bootstrap CDN -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="quiz.css" type="text/css">
+    <!-- font link -->
+    <link href="https://fonts.googleapis.com/css?family=Acme" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Francois+One|Montserrat" rel="stylesheet">
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <script src="model.js"></script>
+    <script src="controller.js"></script>
+    <script src="view.js"></script>
+
+    <link rel="icon" href="./images/favicon-question-circle.ico">
+
+</head>
+<body>
+
+
+
+
+
+    <div class="modal fade" id="hint" tabindex="-1" data-keyboard="false" role="dialog">
+        <div class="modal-dialog hintStyle" role="document">
+            <div class="hint-content modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <div id="hintTitle" class="modal-title">
+                        Default Hint
+                    </div>
+                </div>
+                <div id="hintBody" class="modal-body">
+                    <div class="container">
+                        <div class="row">
+                            <div class="outerHintContent col-md-10">
+                                <div class="mainHintContent input-group form-group">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" data-backdrop="static" id="start" data-keyboard="false" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div id="startTitle" class="modal-title">
+                        Welcome to Quizzical!
+                    </div>
+                </div>
+                <div id="startBody" class="modal-body">
+                    <div class="container">
+                        <div class="row">
+                            <div class="startContent col-md-12">
+                                    <button id="quick" type="button" class="btn btn-success btn-lg">Quick Start</button>
+                                    <button id="custom" type="button" class="btn btn-primary btn-lg">Customize Game</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" data-backdrop="static" data-keyboard="false" id="nextQuestion" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div id="nextTitle" class="modal-title">
+                        Choose the next question!
+                    </div>
+                </div>
+                <div id="nextQuestionBody" class="modal-body">
+                    <div class="container nextQuestionContainer">
+                        <div class="row">
+
+                            <div id="diff" class="col-md-12">
+                                <label class="radio-inline">
+                                    <input type="radio" name="difficultyLevel" id="easyDiff" value="easy">Easy (20 points)
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="difficultyLevel" id="mediumDiff" value="medium">Medium (40 points)
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="difficultyLevel" id="hardDiff" value="hard">Hard (80 points)
+                                </label>
+                            </div>
+                            <div class="col-md-12">
+                                <select class="form-control categoryOptionList">
+                                    <option hidden>Select a Category!</option>
+                                </select>
+                            </div>
+
+                            <div class="nextQuestionButtons col-md-12 row">
+                                <div class="col-xs-2 col-xs-offset-3 col-md-offset-4 col-md-2 ">
+                                    <button id="nextQuestionSubmit" type="button" class="btn btn-success">Submit</button>
+                                </div>
+                                <div class="col-xs-2 col-md-2">
+                                    <button id="randomQuestion" type="button" class="btn btn-danger">Randomize!</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="setPlayers" data-keyboard="false" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <div id="setupTitle" class="modal-title">
+                        Custom Game Setup
+                    </div>
+                </div>
+                <div id="setupBody" class="modal-body">
+                    <div class="container nameInput">
+                        <div class="row">
+                            <div id="gameLength" class="col-md-12">
+                                Game Length:
+                                <label class="radio-inline">
+                                    <input value="10" type="radio" name="length" id="short">Short (5 questions)
+                                </label>
+                                <label class="radio-inline">
+                                    <input checked value="20" type="radio" name="length" id="medium">Medium (10 questions)
+                                </label>
+                                <label class="radio-inline">
+                                    <input value="30" type="radio" name="length" id="long">Long (15 questions)
+                                </label>
+                            </div>
+
+                            <div class="outerSetupContent col-md-10 col-md-offset-1">
+                                <div class="mainSetupContent input-group form-group">
+                                    <span class="input-group-addon">
+                                        <span class="glyphicon glyphicon-user"></span>
+                                    </span>
+                                    <input type="text" class="form-control" name="username" id="username1" placeholder="Enter Player 1 Name Here">
+                                </div>
+                                <div class="mainSetupContent input-group form-group">
+                                    <span class="input-group-addon">
+                                        <span class="glyphicon glyphicon-user"></span>
+                                    </span>
+                                    <input type="text" class="form-control" name="username" id="username2" placeholder="Enter Player 2 Name Here">
+                                </div>
+                            </div>
+                            <div class="col-xs-12">
+                                <button id="setPlayerInfo" class="btn btn-success">Submit</button>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="instructions" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <div id="instructionTitle" class="modal-title">
+                        Instructions for Quizzical
+                    </div>
+                </div>
+                <div class="modal-body">
+                    <div class="container">
+                        <div class="row">
+                            <div class="outerSetupContent col-md-6">
+                                <p>This is a 2-player trivia game where people take turns answering multiple choice questions. The game works as follows:</p>
+                                <ul>
+                                    <li>Player 2 starts by choosing a question for Player 1 to answer</li>
+                                    <li>After the first question is answered, Player 1 will choose a question for Player 2</li>
+                                    <li>The game continues to alternate between the players until the maximum number of questions have been attempted</li>
+                                    <li>At the end, the player with the most points is the winner of Quizzical</li>
+                                </ul>    
+
+                                <p>The questions work as follows:</p>
+                                <ul>
+                                    <li>Each question can be drawn from one of 10 different categories.</li>
+                                    <li>Each category has 3 different difficulties: easy, medium, and hard.</li>
+                                    <li>Easy questions are worth 20 points, medium questions are 40 points, and hard questions are 80 points.</li>
+                                </ul>
+
+                                <p>There are also hints:</p>
+                                <ul>
+                                    <li>On each question, you may use one hint by picking Wikipedia, Youtube, or Twitter</li>
+                                    <li>Using Wikipedia will reduce the current question value by half.</li>
+                                    <li>Using Youtube will reduce the current question value by a fourth.</li>
+                                    <li>Using Twitter will not reduce the question value.</li>
+                                    <li>If the hint fails to load, no reduction will be applied.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="winner" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <div id="winnerTitle" class="modal-title">
+                        Winner!
+                    </div>
+                </div>
+                <div class="modal-body">
+                    <div class="container">
+                        <div class="row">
+                            <div class="outerSetupContent col-md-12">
+                                <p id="winMessage">Congrats! <span id="winnerText">Temp</span> has won with <span id="winnerPoints">Temp</span> points!</p>
+                            </div>
+                            <div class="col-md-12">
+                                <button id="newGame" class="btn btn-success">Play Again!</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header and main title graphic - do not show on mobile -->
+   
+    <header class="header hidden-xs">
+            <ul>
+                <li class="box red">q</li>
+                <li class="box yellow">u</li>
+                <li class="box blue">i</li>
+                <li class="box red">z</li>
+                <li class="box yellow">z</li>
+                <li class="box blue">i</li>
+                <li class="box red">c</li>
+                <li class="box yellow">a</li>
+                <li class="box blue last">l</li>
+            </ul>
+    </header>
+    <div id="mainScreen" class="container">
+<!-- Main Game Area -->
+        <section class="column col-md-12">
+            <!-- Player and Stats Box -->
+            <aside class="col-xs-12 col-sm-12 col-md-3 col-lg-3 col-md-offset-1">
+                <div class="column col-md-12 col-xs-12">
+                    <p class="col-md-12 panel panel-default currentTurn">Current Turn: <span id="turn" class="label label-green">Player 1</span></p>
+                    <div class="col-md-5 col-xs-5">
+                        <div class="playerOneStatusBox panel panel-primary row playerColumn">
+                            <div class="hidden-sm hidden-xs panel-heading">Status</div>
+                            <p class="col-md-12"><span id="playerOneName">P1</span> Points: <div id="playerOnePoints" class="playerLabel label label-black">0</div></p>
+                        </div>
+                    </div>
+                    <div class="col-md-5 col-xs-5 col-md-offset-2 col-xs-offset-2">
+                        <div class="playerTwoStatusBox panel panel-primary row playerColumn">
+                            <div class="hidden-sm hidden-xs panel-heading">Status</div>
+                            <p class="col-md-12"><span id="playerTwoName">P2</span> Points: <div id="playerTwoPoints" class="playerLabel label label-black">0</div></p>
+                        </div>
+                    </div>
+
+                    <div class="hidden-sm hidden-xs col-md-12 soundContainer">
+                        <span class="sound">Sound:</span>
+                            <label class="toggle">
+                                <input id="sound-toggle" type="checkbox">
+                                <span class="slider round"></span>
+                            </label>
+                    </div>
+
+                    <div class="hidden-sm hidden-xs col-lg-12 statsButtons">
+                        <button id="info" class="btn btn-info">Instructions</button>
+                        <button class="btn btn-danger reset">Reset</button>
+                    </div>
+                </div>
+
+            </aside>
+
+            <article class=" col-md-7 col-md-offset-1 row">
+                <div class="col-md-10 col-xs-12 col-sm-12 col-md-offset-1">
+                    <div id="questionBody" class="panel panel-info text-center">
+                        <div id="questionCategory" class="panel-heading">Category</div>
+                        <div id="question" class="panel-body">Question</div>
+                    </div>
+                </div>
+                <div id="answers" class="col-md-12 col-sm-10 col-sm-offset-1 col-xs-12 col-md-offset-0 row">
+                    <div id="answer1" data-value="0" class="col-md-6 col-xs-12"><div class="btn btn-default btn-block text-center hoverBold"><span id="answer1Text">Answer</span></div></div>
+                    <div id="answer2" data-value="1" class="col-md-6 col-xs-12"><div class="btn btn-default btn-block text-center hoverBold"><span id="answer2Text">Answer</span></div></div>
+                    <div id="answer3" data-value="2" class="col-md-6 col-xs-12"><div class="btn btn-default btn-block text-center hoverBold"><span id="answer3Text">Answer</span></div></div>
+                    <div id="answer4" data-value="3" class="col-md-6 col-xs-12"><div class="btn btn-default btn-block text-center hoverBold"><span id="answer4Text">Answer</span></div></div>
+                </div>
+                <div id="help" class="col-md-10 col-sm-10 col-sm-offset-1 col-xs-10 col-md-offset-1 col-xs-offset-1 text-center row">
+                    <p class="label label-success col-md-8 col-sm-8 col-xs-12 col-md-offset-2 col-sm-offset-2 hintBox">Available hints:</p>
+                    <div class="row btn-group btn-group-lg" role="group">
+                        <button id="wiki" type="button" class="hintButton btn btn-default"><span class="hidden-xs">Wikipedia </span><i class="fa fa-wikipedia-w" aria-hidden="true"></i></button>
+                        <button id="youtube" type="button" class="hintButton btn btn-default"><span class="hidden-xs">Youtube </span><i class="fa fa-youtube" aria-hidden="true"></i></button>
+                        <button id="twitter" type="button" class="hintButton btn btn-default"><span class="hidden-xs">Twitter </span> <i class="fa fa-twitter" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                </div>
+            </article>
+            <div class="col-xs-12 hidden-md hidden-lg visible-xs visible-sm row controls">
+                <button id="info-min" class="btn btn-info col-xs-12 col-sm-4 col-sm-offset-2">Instructions</button>
+                <button class="btn btn-danger col-xs-12 col-sm-3 reset">Reset</button>
+                <label class="toggle col-xs-2 col-xs-offset-4 col-sm-1 col-sm-offset-0">Sound: <input id="sound-toggle-min" type="checkbox"><span class="slider round"></span></label>
+            </div>
+        </section>
+        
+
+    </div>
+</body>
+</html>
